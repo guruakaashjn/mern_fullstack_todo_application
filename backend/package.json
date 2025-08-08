@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "This is a complete MERN Full Stack based TO-DO application implementation.",
+  "main": "app.js",
+  "repository": {
+    "url": "https://github.com/guruakaashjn/mern_fullstack_todo_application.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node dist/app.js",
+    "dev": "nodemon src/app.ts"
+  },
+  "author": "Guru Akaash Nagaraj Janthalur, Full Stack Developer and Software Engineer",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.2.0"
+  }
+}

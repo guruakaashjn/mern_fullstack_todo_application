@@ -3,6 +3,14 @@ import todoEntryRepository from "../repository/impl/todoEntry";
 
 export const createToDoEntry = async (body) => {
   try {
+    // validations
+    const getToDoEntryByName = await todoEntryRepository.getToDoEntryByName(
+      body.name
+    );
+    if (getToDoEntryByName) {
+      throw new Error("todo entry with given name already exists");
+    }
+
     // create new todo entry in mongoDB
     const newTodoEntry = await todoEntryRepository.createToDoEntry(body);
     if (newTodoEntry === null) {

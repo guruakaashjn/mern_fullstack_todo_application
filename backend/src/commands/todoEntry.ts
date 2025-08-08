@@ -7,7 +7,7 @@ class TodoEntryValidation {
         name: z.string(),
         description: z.string(),
         enabled: z.boolean(),
-        status: z.string(),
+        status: z.enum(["Not Started", "In Progress", "Completed", "Halted"]),
       })
       .strict();
 
@@ -17,16 +17,20 @@ class TodoEntryValidation {
 
   validateEditTodoEntry = async (command, params) => {
     const bodySchema = z.object({
-      name: z.string(),
-      description: z.string(),
-      enabled: z.boolean(),
-      status: z.string(),
+      name: z.string().optional(),
+      description: z.string().optional(),
+      enabled: z.boolean().optional(),
+      status: z
+        .enum(["Not Started", "In Progress", "Completed", "Halted"])
+        .optional(),
     });
     const bodyResult = bodySchema.safeParse(command);
 
-    const paramsSchema = z.object({
-      id: z.string(),
-    });
+    const paramsSchema = z
+      .object({
+        id: z.string(),
+      })
+      .strict();
     const paramsResult = paramsSchema.safeParse(params);
 
     const result = bodyResult.success && paramsResult.success;
@@ -34,18 +38,22 @@ class TodoEntryValidation {
   };
 
   validateDeleteTodoEntry = async (params) => {
-    const schema = z.object({
-      id: z.string(),
-    });
+    const schema = z
+      .object({
+        id: z.string(),
+      })
+      .strict();
 
     const result = schema.safeParse(params);
     return result.success;
   };
 
   validateGetTodoEntry = async (params) => {
-    const schema = z.object({
-      id: z.string(),
-    });
+    const schema = z
+      .object({
+        id: z.string(),
+      })
+      .strict();
 
     const result = schema.safeParse(params);
     return result.success;

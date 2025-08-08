@@ -44,6 +44,14 @@ class TodoEntryRepository implements TodoEntryInterface {
       .sort({ createdDate: -1 });
     return toDoEntries;
   }
+
+  async getToDoEntryByName(todoEntryName: any) {
+    const getToDoEntry = await todoEntryModel.findOne({
+      name: todoEntryName,
+      deleted: { $ne: true },
+    });
+    return getToDoEntry;
+  }
 }
 
 const todoEntryRepository = new TodoEntryRepository();

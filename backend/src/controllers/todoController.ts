@@ -5,12 +5,7 @@ import * as todoEntryService from "../service/todoService";
 
 export const createToDoEntry = async (req, res, next) => {
   try {
-    if (
-      !req?.body?.name ||
-      !req?.body?.description ||
-      !req?.body?.enabled ||
-      !req?.body?.status
-    ) {
+    if (!req?.body?.name || !req?.body?.description || !req?.body?.status) {
       throw new erorrHandler.BadRequest("Missing required fields!");
     }
 
@@ -31,15 +26,6 @@ export const createToDoEntry = async (req, res, next) => {
 
 export const editToDoEntry = async (req, res, next) => {
   try {
-    if (
-      !req?.body?.name ||
-      !req?.body?.description ||
-      !req?.body?.enabled ||
-      !req?.body?.status
-    ) {
-      throw new erorrHandler.BadRequest("Missing required fields!");
-    }
-
     // field level validations
     const validationSuccess = await todoEntryValidation.validateEditTodoEntry(
       req.body,

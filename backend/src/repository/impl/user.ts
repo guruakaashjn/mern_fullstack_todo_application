@@ -15,3 +15,6 @@ class UserRepository implements UserRepositoryInterface {
     return getUser;
   }
 }
+
+const userRepository = new UserRepository();
+export default userRepository;

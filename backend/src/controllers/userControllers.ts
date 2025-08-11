@@ -6,7 +6,9 @@ import { responseHandler } from "../middlewares/responseHandler";
 export const createUser = async (req, res, next) => {
   try {
     if (!req?.body?.name || !req?.body?.email || !req?.body?.password) {
-      throw new errorHandler.BadRequest(`Missing required fields! ${req.body}`);
+      throw new errorHandler.BadRequest(
+        `Missing required fields! ${JSON.stringify(req.body)}`
+      );
     }
 
     // field level validations

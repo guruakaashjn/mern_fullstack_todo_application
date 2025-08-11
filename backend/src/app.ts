@@ -9,7 +9,7 @@ const server = async () => {
   try {
     console.log("Starting to run the server");
 
-    // connect to mongo db configurations.
+    // configurations for mongodb setup.
     await connectToMongoDB();
 
     app.listen(process.env.SERVER_PORT, () => {

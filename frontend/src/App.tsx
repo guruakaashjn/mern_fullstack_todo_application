@@ -4,6 +4,10 @@ import "./App.css";
 import { useAppSelector } from "./store/hooks";
 import Dashboard from "./pages/Dashboard";
 import { Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Auth from "./pages/Auth";
+import Logout from "./pages/Logout";
+import NavigationBar from "./components/NavigationBar";
 
 function App() {
   const isAuthenticated = useAppSelector(
@@ -17,7 +21,20 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />}></Route>
+        <Route path="/login" element={<Auth />} />
+        <Route path="/logout" element={<Logout />} />
+
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <>
+                <NavigationBar />
+                <Dashboard />
+              </>
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

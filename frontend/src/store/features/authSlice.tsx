@@ -24,7 +24,8 @@ export const authSlice = createSlice({
       }
 
       // clearing user data and setting isAuthenticated to false
-      if (action?.payload?.ttype === "auth/logout") {
+      if (action?.payload?.type === "auth/logout") {
+        console.log("here");
         state.isAuthenticated = false;
       }
     },

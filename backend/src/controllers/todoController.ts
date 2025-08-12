@@ -96,3 +96,35 @@ export const getToDoEntry = async (req, res, next) => {
     next(err);
   }
 };
+
+export const enableStatusById = async (req, res, next) => {
+  try {
+    if (!req.params.id) {
+      throw new erorrHandler.BadRequest("Missing required fields!");
+    }
+
+    // field level validations
+    const validationSuccess =
+      await todoEntryValidation.validateEnableDisableTodoEntry(
+        req.body,
+        req.params
+      );
+    if (!validationSuccess) {
+      throw new erorrHandler.BadRequest("Field Level Validation Failed");
+    }
+
+    const result = await todoEntryService.editToDoEntry(
+      req.params.id,
+      req.body
+    );
+
+    return responseHandler(
+      result,
+      res,
+      "enable/disable todo entry by id successful",
+      200
+    );
+  } catch (err) {
+    next(err);
+  }
+};

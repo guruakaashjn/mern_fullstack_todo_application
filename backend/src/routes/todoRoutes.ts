@@ -8,5 +8,6 @@ router.route("/").get(todoController.getAllToDoEntries);
 router.route("/:id").get(todoController.getToDoEntry);
 router.route("/:id").put(todoController.editToDoEntry);
 router.route("/:id").delete(todoController.deleteToDoEntry);
+router.route("/:id/enable-status").patch(todoController.enableStatusById);
 
 export default router;

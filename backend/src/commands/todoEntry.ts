@@ -58,6 +58,24 @@ class TodoEntryValidation {
     const result = schema.safeParse(params);
     return result.success;
   };
+
+  validateEnableDisableTodoEntry = async (body, params) => {
+    const bodySchema = z
+      .object({
+        enabled: z.boolean(),
+      })
+      .strict();
+
+    const bodyResult = bodySchema.safeParse(body);
+
+    const paramsSchema = z.object({
+      id: z.string(),
+    });
+
+    const paramsResult = paramsSchema.safeParse(params);
+
+    return bodyResult.success && paramsResult.success;
+  };
 }
 
 const todoEntryValidation = new TodoEntryValidation();

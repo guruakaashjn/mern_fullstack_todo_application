@@ -62,7 +62,7 @@ export const loginUser = async (req, res, next) => {
 
     if (result) {
       return responseHandler(finalResponse, res, "login user successful", 200);
-    } else throw new errorHandler.BadRequest("Missing required fields!");
+    } else throw new errorHandler.BadRequest("login user unsuccessful");
   } catch (err) {
     next(err);
   }
@@ -106,7 +106,8 @@ export const signupUser = async (req, res, next) => {
         "create user/signup user successful",
         201
       );
-    } else throw new errorHandler.BadRequest("Missing required fields!");
+    } else
+      throw new errorHandler.BadRequest("create user/signup user unsuccessful");
   } catch (err) {
     next(err);
   }
@@ -143,7 +144,7 @@ export const logoutUser = async (req, res, next) => {
 
     if (result) {
       return responseHandler(finalResponse, res, "logout user successful", 200);
-    } else throw new errorHandler.BadRequest("Missing required fields!");
+    } else throw new errorHandler.BadRequest("logout user unsuccessful");
   } catch (err) {
     next(err);
   }

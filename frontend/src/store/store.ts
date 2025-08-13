@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import authReducer from "./features/authSlice";
 import { authApi } from "./services/authApi";
 import { rtkQueryErrorLogger } from "../middlewares/error-handler";
+import { todoEntryApi } from "./services/todoEntryApi";
 
 const persistConfig = {
   key: "root",
@@ -15,6 +16,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   auth: authReducer,
   [authApi.reducerPath]: authApi.reducer,
+  [todoEntryApi.reducerPath]: todoEntryApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -22,7 +24,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware: any) =>
-    getDefaultMiddleware().concat(authApi.middleware, rtkQueryErrorLogger),
+    getDefaultMiddleware().concat(
+      authApi.middleware,
+      todoEntryApi.middleware,
+      rtkQueryErrorLogger
+    ),
 });
 
 export const persistor = persistStore(store);

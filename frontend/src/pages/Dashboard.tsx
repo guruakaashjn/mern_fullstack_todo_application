@@ -10,7 +10,7 @@ export default function Dashboard() {
         type="button"
         className="w-full h-[10vh] bg-black text-white py-2 font-medium text-2xl my-5 rounded-lg hover:bg-blue-600 hover:text-black transition"
         onClick={() => {
-          // navigate("/list-cronjobs");
+          navigate("/list-todo-entries");
         }}
       >
         ToDo Entries Panel

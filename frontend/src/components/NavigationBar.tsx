@@ -65,7 +65,7 @@ export default function NavigationBar() {
             // type="button"
             className="text-black font-bold text-xl my-5 rounded-lg "
           >
-            ToDo Entries Portal
+            My Portal
           </p>
         </div>
       </div>

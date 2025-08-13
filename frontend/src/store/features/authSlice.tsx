@@ -18,8 +18,8 @@ export const authSlice = createSlice({
       // setting users and storing user info with token in localstorage and setting isAuthenticated to true for enabling access to protected routes
       if (action?.payload?.type === "auth/login") {
         state.user = action.payload.payload.data;
-        state.token = action.payload.payload.data.token;
-        state.refreshToken = action.payload.payload.data.refreshToken;
+        state.token = action.payload.payload.data.tokens.token;
+        state.refreshToken = action.payload.payload.data.tokens.refreshToken;
         state.isAuthenticated = true;
       }
 
@@ -32,6 +32,12 @@ export const authSlice = createSlice({
 
     setToken: (state, action) => {
       if (action?.payload?.type === "token/refresh") {
+        console.log("object", action.payload);
+        console.log("new token", action.payload.payload.data.token);
+        console.log(
+          "new refresh token",
+          action.payload.payload.data.refreshToken
+        );
         state.token = action.payload.payload.data.token;
         state.refreshToken = action.payload.payload.data.refreshToken;
       }

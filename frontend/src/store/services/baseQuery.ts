@@ -15,11 +15,13 @@ const baseQueryWithAuth = fetchBaseQuery({
   baseUrl: "http://127.0.0.1:3000/api/v1",
   prepareHeaders: (headers, { getState }: any) => {
     const token = getState().auth.token;
+    // const state = getState().auth;
+    // console.log(state);
 
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
     }
-    console.log(`Bearer ${token}`);
+    // console.log(`Bearer ${token}`);
 
     return headers;
   },
@@ -35,7 +37,10 @@ export const baseQueryWithReauth: BaseQueryFn<
   let result = await baseQueryWithAuth(args, api, extraOptions);
 
   if (result.error && result.error.status === 401) {
-    console.log("seding refresh token request");
+    console.log(
+      "sending refresh token request",
+      api?.getState().auth.refreshToken
+    );
     refreshPromise = Promise.resolve(
       baseQueryWithAuth(
         {
@@ -51,7 +56,9 @@ export const baseQueryWithReauth: BaseQueryFn<
     )
       .then((refreshResult: any) => {
         if (refreshResult.data) {
-          if (refreshResult.data?.message !== "token renewal successful") {
+          if (
+            refreshResult.data?.statusMessage !== "token renewal successful"
+          ) {
             api.dispatch(
               setUser({ type: "auth/logout", payload: { data: {} } })
             );

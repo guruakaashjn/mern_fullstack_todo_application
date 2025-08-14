@@ -8,7 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Auth from "./pages/Auth";
 import Logout from "./pages/Logout";
 import NavigationBar from "./components/NavigationBar";
-import ListTodoEntries from "./pages/ListTodoENtries";
+import ListTodoEntries from "./pages/ListTodoEntries";
 import ListTodoEntry from "./pages/ListTodoEntry";
 import CreateTodoEntry from "./pages/CreateTodoEntry";
 import EditTodoEntry from "./pages/EditTodoEntry";
